@@ -1,4 +1,4 @@
-package br.com.restassredapitesting.tests.auth.requests.payloads;
+package br.com.restassuredapitesting.tests.auth.requests.payloads;
 
 import org.json.JSONObject;
 

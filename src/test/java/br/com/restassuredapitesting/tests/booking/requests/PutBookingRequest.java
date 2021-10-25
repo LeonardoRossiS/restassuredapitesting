@@ -1,6 +1,6 @@
-package br.com.restassredapitesting.tests.booking.requests;
+package br.com.restassuredapitesting.tests.booking.requests;
 
-import br.com.restassredapitesting.tests.booking.requests.payloads.BookingPayloads;
+import br.com.restassuredapitesting.tests.booking.requests.payloads.BookingPayloads;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;

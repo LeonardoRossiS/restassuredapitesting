@@ -1,4 +1,4 @@
-package br.com.restassredapitesting.base;
+package br.com.restassuredapitesting.base;
 
 import io.restassured.RestAssured;
 import org.junit.BeforeClass;

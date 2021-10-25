@@ -1,4 +1,4 @@
-package br.com.restassredapitesting.tests.ping.requests;
+package br.com.restassuredapitesting.tests.ping.requests;
 
 import io.restassured.response.Response;
 

@@ -1,4 +1,4 @@
-package br.com.restassredapitesting.tests.booking.requests;
+package br.com.restassuredapitesting.tests.booking.requests;
 
 import io.restassured.response.Response;
 

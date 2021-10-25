@@ -1,11 +1,10 @@
-package br.com.restassredapitesting.tests.booking.tests;
+package br.com.restassuredapitesting.tests.booking.tests;
 
-import br.com.restassredapitesting.base.BaseTest;
-import br.com.restassredapitesting.suites.AllTests;
-import br.com.restassredapitesting.tests.auth.requests.PostAuthRequest;
-import br.com.restassredapitesting.tests.auth.tests.PostAuthTest;
-import br.com.restassredapitesting.tests.booking.requests.GetBookingRequest;
-import br.com.restassredapitesting.tests.booking.requests.PutBookingRequest;
+import br.com.restassuredapitesting.base.BaseTest;
+import br.com.restassuredapitesting.suites.AllTests;
+import br.com.restassuredapitesting.tests.auth.requests.PostAuthRequest;
+import br.com.restassuredapitesting.tests.booking.requests.GetBookingRequest;
+import br.com.restassuredapitesting.tests.booking.requests.PutBookingRequest;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 

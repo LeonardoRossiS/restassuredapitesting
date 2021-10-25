@@ -1,9 +1,7 @@
-package br.com.restassredapitesting.tests.auth.requests;
+package br.com.restassuredapitesting.tests.auth.requests;
 
-import br.com.restassredapitesting.tests.auth.requests.payloads.AuthPayloads;
-import io.restassured.internal.path.json.mapping.JsonObjectDeserializer;
+import br.com.restassuredapitesting.tests.auth.requests.payloads.AuthPayloads;
 import io.restassured.response.Response;
-import org.json.JSONObject;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.post;

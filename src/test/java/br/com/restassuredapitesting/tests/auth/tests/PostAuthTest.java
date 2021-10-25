@@ -1,8 +1,8 @@
-package br.com.restassredapitesting.tests.auth.tests;
+package br.com.restassuredapitesting.tests.auth.tests;
 
-import br.com.restassredapitesting.base.BaseTest;
-import br.com.restassredapitesting.suites.AllTests;
-import br.com.restassredapitesting.tests.auth.requests.PostAuthRequest;
+import br.com.restassuredapitesting.base.BaseTest;
+import br.com.restassuredapitesting.suites.AllTests;
+import br.com.restassuredapitesting.tests.auth.requests.PostAuthRequest;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
