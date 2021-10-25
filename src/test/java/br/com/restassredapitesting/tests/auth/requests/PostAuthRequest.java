@@ -22,7 +22,7 @@ public class PostAuthRequest {
     }
 
     public String getToken(){
-        return "token"+this.postTokenReturn()
+        return "token="+this.postTokenReturn()
                 .then()
                 .statusCode(200)
                 .extract()
