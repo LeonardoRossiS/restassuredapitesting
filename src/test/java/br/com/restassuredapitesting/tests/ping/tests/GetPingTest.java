@@ -10,7 +10,6 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.junit.runners.Suite;
 
 @Feature("Feature - API Online")
 public class GetPingTest extends BaseTest {
@@ -24,7 +23,6 @@ public class GetPingTest extends BaseTest {
     public void healthCheck(){
         getPingRequests.pingReturnAPI()
                 .then()
-                //.time(lessThan(2L), TimeUnit.SECONDS)
                 .statusCode(201);
     }
 

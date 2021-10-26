@@ -13,7 +13,6 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.junit.runners.Suite;
 
 import static org.hamcrest.Matchers.greaterThan;
 
@@ -39,7 +38,6 @@ public class PutBookingTest extends BaseTest {
         putBookingRequest.updateBookingToken(primeiroID,postAuthRequest.getToken())
                 .then()
                 .statusCode(200)
-                //.log().all()
                 .body("size()",greaterThan(0));
     }
 
@@ -58,7 +56,6 @@ public class PutBookingTest extends BaseTest {
         putBookingRequest.updateBookingAuthorisation(primeiroID,"Basic YWRtaW46cGFzc3dvcmQxMjM=")
                 .then()
                 .statusCode(200)
-                //.log().all()
                 .body("size()",greaterThan(0));
     }
 

@@ -4,10 +4,7 @@ import br.com.restassuredapitesting.base.BaseTest;
 import br.com.restassuredapitesting.suites.Acceptance;
 import br.com.restassuredapitesting.suites.AllTests;
 import br.com.restassuredapitesting.suites.E2e;
-import br.com.restassuredapitesting.tests.auth.requests.PostAuthRequest;
-import br.com.restassuredapitesting.tests.booking.requests.GetBookingRequest;
 import br.com.restassuredapitesting.tests.booking.requests.PostBookingRequest;
-import br.com.restassuredapitesting.tests.booking.requests.PutBookingRequest;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -30,7 +27,6 @@ public class PostBookingTest extends BaseTest {
         postBookingRequest.createBookingRequest()
                 .then()
                 .statusCode(200)
-                //.log().all()
                 .body("size()",greaterThan(0));
     }
 

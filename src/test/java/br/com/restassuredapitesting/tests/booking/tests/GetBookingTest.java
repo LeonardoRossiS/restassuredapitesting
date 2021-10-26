@@ -38,7 +38,6 @@ public class GetBookingTest extends BaseTest {
         getBookingRequest.bookingReturn(primeiroID)
                 .then()
                 .statusCode(200)
-                //.log().all()
                 .body("size()",greaterThan(0));
     }
 
@@ -50,7 +49,6 @@ public class GetBookingTest extends BaseTest {
         getBookingRequest.bookingReturnIDs()
                 .then()
                 .statusCode(200)
-                //.log().all()
                 .body("size()",greaterThan(0));
     }
 
@@ -136,7 +134,6 @@ public class GetBookingTest extends BaseTest {
         getBookingRequest.bookingReturnIDs()
                 .then()
                 .statusCode(200)
-                //.log().all()
                 .body(matchesJsonSchema(new File(Utils.getSchemaBasePath("booking","bookings"))));
     }
 
@@ -154,7 +151,6 @@ public class GetBookingTest extends BaseTest {
         getBookingRequest.bookingReturn(primeiroID)
                 .then()
                 .statusCode(200)
-                //.log().all()
                 .body(matchesJsonSchema(new File(Utils.getSchemaBasePath("booking","reservaespecifica"))));
     }
 
