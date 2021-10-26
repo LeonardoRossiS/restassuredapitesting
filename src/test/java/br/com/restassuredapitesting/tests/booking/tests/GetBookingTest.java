@@ -1,8 +1,10 @@
 package br.com.restassuredapitesting.tests.booking.tests;
 
 import br.com.restassuredapitesting.base.BaseTest;
+import br.com.restassuredapitesting.suites.Acceptance;
 import br.com.restassuredapitesting.suites.AllTests;
-import br.com.restassuredapitesting.suites.ContractTests;
+import br.com.restassuredapitesting.suites.E2e;
+import br.com.restassuredapitesting.suites.Schema;
 import br.com.restassuredapitesting.tests.booking.requests.GetBookingRequest;
 import br.com.restassuredapitesting.utils.Utils;
 import io.qameta.allure.Feature;
@@ -24,7 +26,7 @@ public class GetBookingTest extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.BLOCKER)
-    @Category({AllTests.class})
+    @Category({AllTests.class, Acceptance.class})
     @DisplayName("Listar uma reserva específica")
     public void validaListagemReservaEspecifica(){
         int primeiroID = getBookingRequest.bookingReturnIDs()
@@ -42,7 +44,7 @@ public class GetBookingTest extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.BLOCKER)
-    @Category({AllTests.class})
+    @Category({AllTests.class, Acceptance.class})
     @DisplayName("Listar IDs das reservas")
     public void validaListagemIDReservas(){
         getBookingRequest.bookingReturnIDs()
@@ -54,7 +56,7 @@ public class GetBookingTest extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
-    @Category({AllTests.class})
+    @Category({AllTests.class, Acceptance.class})
     @DisplayName("Listar IDs de reservas utilizando o filtro firstname")
     public void validaFiltragemFirstName(){
         getBookingRequest.bookingFilterReturnIDs("firstname",Utils.nometeste())
@@ -64,7 +66,7 @@ public class GetBookingTest extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
-    @Category({AllTests.class})
+    @Category({AllTests.class, Acceptance.class})
     @DisplayName("Listar IDs de reservas utilizando o filtro lastname")
     public void validaFiltragemLastName(){
         getBookingRequest.bookingFilterReturnIDs("lastname",Utils.sobrenometeste())
@@ -74,7 +76,7 @@ public class GetBookingTest extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
-    @Category({AllTests.class})
+    @Category({AllTests.class, Acceptance.class})
     @DisplayName("Listar IDs de reservas utilizando o filtro checkin")
     public void validaFiltragemCheckIn(){
         getBookingRequest.bookingFilterReturnIDs("checkin",Utils.checkinteste())
@@ -84,7 +86,7 @@ public class GetBookingTest extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
-    @Category({AllTests.class})
+    @Category({AllTests.class, Acceptance.class})
     @DisplayName("Listar IDs de reservas utilizando o filtro checkout")
     public void validaFiltragemCheckOut(){
         getBookingRequest.bookingFilterReturnIDs("checkout",Utils.checkoutteste())
@@ -94,7 +96,7 @@ public class GetBookingTest extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
-    @Category({AllTests.class})
+    @Category({AllTests.class, Acceptance.class})
     @DisplayName("Listar IDs de reservas utilizando o filtro checkout and checkout")
     public void validaFiltragemCheckOutECheckOut(){
         getBookingRequest.booking2FiltersReturnIDs("checkout",Utils.checkoutteste(),
@@ -105,9 +107,9 @@ public class GetBookingTest extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
-    @Category({AllTests.class})
-    @DisplayName("Listar IDs de reservas utilizando o filtro checkout")
-    public void validaFiltragemNameEChackInECheckOut(){
+    @Category({AllTests.class, Acceptance.class})
+    @DisplayName("Listar IDs de reservas utilizando o filtro name, checkin and checkout date")
+    public void validaFiltragemNameECheckInECheckOut(){
         getBookingRequest.booking4FiltersReturnIDs("firstname",Utils.nometeste(),
                                                     "lastname",Utils.sobrenometeste(),
                                                     "checkin",Utils.checkinteste(),
@@ -117,8 +119,18 @@ public class GetBookingTest extends BaseTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Category({AllTests.class, E2e.class})
+    @DisplayName("Visualizar erro de servidor 500 quando enviar filtro mal formatado")
+    public void validaFiltragemMalFormatada(){
+        getBookingRequest.bookingFilterReturnIDs("fistne",Utils.nometeste())
+                .then()
+                .statusCode(500);
+    }
+
+    @Test
     @Severity(SeverityLevel.BLOCKER)
-    @Category({AllTests.class, ContractTests.class})
+    @Category({AllTests.class, Schema.class})
     @DisplayName("Garantir o schema do retorno da lista de reservas")
     public void validaSchemaListagemReservas(){
         getBookingRequest.bookingReturnIDs()
@@ -130,7 +142,7 @@ public class GetBookingTest extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.BLOCKER)
-    @Category({AllTests.class, ContractTests.class})
+    @Category({AllTests.class, Schema.class})
     @DisplayName("Garantir o schema do retorno de uma reserva específica")
     public void validaSchemaReservaEspecifica(){
         int primeiroID = getBookingRequest.bookingReturnIDs()

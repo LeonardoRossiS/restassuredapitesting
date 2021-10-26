@@ -21,7 +21,7 @@ public class GetBookingRequest {
                 .get("booking?"+filter+"="+attribute);
     }
 
-    @Step("Retorna os IDs da listagem de reservas, afetados por um filtro")
+    @Step("Retorna os IDs da listagem de reservas, afetados por dois filtros")
     public Response booking2FiltersReturnIDs(String filter, String attribute,
                                              String filter2, String attribute2){
         return given()
@@ -30,7 +30,7 @@ public class GetBookingRequest {
                         +"&"+filter2+"="+attribute2);
     }
 
-    @Step("Retorna os IDs da listagem de reservas, afetados por um filtro")
+    @Step("Retorna os IDs da listagem de reservas, afetados por quatro filtros")
     public Response booking4FiltersReturnIDs(String filter, String attribute,
                                              String filter2, String attribute2,
                                              String filter3, String attribute3,

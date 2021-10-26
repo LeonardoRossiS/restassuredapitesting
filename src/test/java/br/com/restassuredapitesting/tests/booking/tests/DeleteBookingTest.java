@@ -1,22 +1,21 @@
 package br.com.restassuredapitesting.tests.booking.tests;
 
 import br.com.restassuredapitesting.base.BaseTest;
+import br.com.restassuredapitesting.suites.Acceptance;
 import br.com.restassuredapitesting.suites.AllTests;
-import br.com.restassuredapitesting.suites.ContractTests;
+import br.com.restassuredapitesting.suites.E2e;
 import br.com.restassuredapitesting.tests.auth.requests.PostAuthRequest;
 import br.com.restassuredapitesting.tests.booking.requests.DeleteBookingRequest;
 import br.com.restassuredapitesting.tests.booking.requests.GetBookingRequest;
-import br.com.restassuredapitesting.utils.Utils;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import java.io.File;
 
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
-
+@Feature("Feature - Exclusão de reservas")
 public class DeleteBookingTest extends BaseTest {
 
     DeleteBookingRequest deleteBookingRequest = new DeleteBookingRequest();
@@ -26,7 +25,7 @@ public class DeleteBookingTest extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
-    @Category({AllTests.class, ContractTests.class})
+    @Category({AllTests.class, Acceptance.class})
     @DisplayName("Excluir um reserva com sucesso")
     public void deletaReservaEspecifica(){
         int primeiroID = getBookingRequest.bookingReturnIDs()
@@ -36,6 +35,34 @@ public class DeleteBookingTest extends BaseTest {
                 .path("[0].bookingid");
 
         deleteBookingRequest.deleteRequest(primeiroID,postAuthRequest.getToken())
+                .then()
+                .statusCode(201);
+    }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Category({AllTests.class, E2e.class})
+    @DisplayName("Tentar excluir um reserva que não existe")
+    public void deletaReservaInexistente(){
+        int idInexistente = 1;
+
+        deleteBookingRequest.deleteRequest(idInexistente,postAuthRequest.getToken())
+                .then()
+                .statusCode(201);
+    }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Category({AllTests.class, E2e.class})
+    @DisplayName("Tentar excluir uma reserva sem autorização")
+    public void deletaReservaSemToken(){
+        int primeiroID = getBookingRequest.bookingReturnIDs()
+                .then()
+                .statusCode(200)
+                .extract()
+                .path("[0].bookingid");
+
+        deleteBookingRequest.deleteRequest(primeiroID,"token=abc123")
                 .then()
                 .statusCode(201);
     }

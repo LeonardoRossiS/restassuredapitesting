@@ -20,4 +20,15 @@ public class PutBookingRequest {
                 .body(bookingPayloads.payloadValidBooking().toString())
                 .put("booking/"+id);
     }
+
+    @Step("Atualiza uma reserva específica com o parâmetro token")
+    public Response updateBookingAuthorisation(int id, String authorisation){
+        return given()
+                .header("Content-Type","application/json")
+                .header("Accept","application/json")
+                .header("Authorisation",authorisation)
+                .when()
+                .body(bookingPayloads.payloadValidBooking().toString())
+                .put("booking/"+id);
+    }
 }
