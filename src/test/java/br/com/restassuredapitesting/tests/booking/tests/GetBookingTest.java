@@ -36,7 +36,7 @@ public class GetBookingTest extends BaseTest {
         getBookingRequest.bookingReturn(primeiroID)
                 .then()
                 .statusCode(200)
-                .log().all()
+                //.log().all()
                 .body("size()",greaterThan(0));
     }
 
