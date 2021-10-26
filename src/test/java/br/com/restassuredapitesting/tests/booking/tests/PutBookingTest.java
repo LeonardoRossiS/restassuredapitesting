@@ -5,11 +5,16 @@ import br.com.restassuredapitesting.suites.AllTests;
 import br.com.restassuredapitesting.tests.auth.requests.PostAuthRequest;
 import br.com.restassuredapitesting.tests.booking.requests.GetBookingRequest;
 import br.com.restassuredapitesting.tests.booking.requests.PutBookingRequest;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import static org.hamcrest.Matchers.greaterThan;
 
+@Feature("Feature - Atualização de reservas")
 public class PutBookingTest extends BaseTest {
 
     PutBookingRequest putBookingRequest = new PutBookingRequest();
@@ -18,6 +23,8 @@ public class PutBookingTest extends BaseTest {
 
     @Test
     @Category({AllTests.class})
+    @DisplayName("Alterar um reserva somente usando o token")
+    @Severity(SeverityLevel.NORMAL)
     public void validarAlteracaoDeUmaReservaUsandoToken(){
         int primeiroID = getBookingRequest.bookingReturnIDs()
                         .then()

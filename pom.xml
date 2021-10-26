@@ -30,7 +30,6 @@
         <skipITs>true</skipITs>
         <skipTests>false</skipTests>
         <skipUTs>${skipTests}</skipUTs>
-        <surefire.groups></surefire.groups>
     </properties>
     <dependencies>
         <dependency>
@@ -96,10 +95,15 @@
             <version>20190722</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>${maven-resources-plugin.version}</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
-            <!-- init plugin maven-resources -->
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>${maven-resources-plugin.version}</version>
@@ -131,7 +135,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <testFailureIgnore>false</testFailureIgnore>
+                    <testFailureIgnore>true</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
