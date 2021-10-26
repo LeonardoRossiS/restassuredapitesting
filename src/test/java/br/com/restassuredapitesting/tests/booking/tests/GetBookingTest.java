@@ -25,13 +25,95 @@ public class GetBookingTest extends BaseTest {
     @Test
     @Severity(SeverityLevel.BLOCKER)
     @Category({AllTests.class})
-    @DisplayName("Listar IDs de reservas")
+    @DisplayName("Listar uma reserva específica")
+    public void validaListagemReservaEspecifica(){
+        int primeiroID = getBookingRequest.bookingReturnIDs()
+                .then()
+                .statusCode(200)
+                .extract()
+                .path("[0].bookingid");
+
+        getBookingRequest.bookingReturn(primeiroID)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .body("size()",greaterThan(0));
+    }
+
+    @Test
+    @Severity(SeverityLevel.BLOCKER)
+    @Category({AllTests.class})
+    @DisplayName("Listar IDs das reservas")
     public void validaListagemIDReservas(){
         getBookingRequest.bookingReturnIDs()
                 .then()
                 .statusCode(200)
                 //.log().all()
                 .body("size()",greaterThan(0));
+    }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Category({AllTests.class})
+    @DisplayName("Listar IDs de reservas utilizando o filtro firstname")
+    public void validaFiltragemFirstName(){
+        getBookingRequest.bookingFilterReturnIDs("firstname",Utils.nometeste())
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Category({AllTests.class})
+    @DisplayName("Listar IDs de reservas utilizando o filtro lastname")
+    public void validaFiltragemLastName(){
+        getBookingRequest.bookingFilterReturnIDs("lastname",Utils.sobrenometeste())
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Category({AllTests.class})
+    @DisplayName("Listar IDs de reservas utilizando o filtro checkin")
+    public void validaFiltragemCheckIn(){
+        getBookingRequest.bookingFilterReturnIDs("checkin",Utils.checkinteste())
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Category({AllTests.class})
+    @DisplayName("Listar IDs de reservas utilizando o filtro checkout")
+    public void validaFiltragemCheckOut(){
+        getBookingRequest.bookingFilterReturnIDs("checkout",Utils.checkoutteste())
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Category({AllTests.class})
+    @DisplayName("Listar IDs de reservas utilizando o filtro checkout and checkout")
+    public void validaFiltragemCheckOutECheckOut(){
+        getBookingRequest.booking2FiltersReturnIDs("checkout",Utils.checkoutteste(),
+                                                    "checkout",Utils.checkoutteste())
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Category({AllTests.class})
+    @DisplayName("Listar IDs de reservas utilizando o filtro checkout")
+    public void validaFiltragemNameEChackInECheckOut(){
+        getBookingRequest.booking4FiltersReturnIDs("firstname",Utils.nometeste(),
+                                                    "lastname",Utils.sobrenometeste(),
+                                                    "checkin",Utils.checkinteste(),
+                                                     "checkout",Utils.checkoutteste())
+                .then()
+                .statusCode(200);
     }
 
     @Test
