@@ -26,7 +26,7 @@ Listar IDs de reservas utilizando o filtro lastname: OK
 Listar IDs de reservas utilizando o filtro checkin: OK
 Listar IDs de reservas utilizando o filtro checkout: OK
 Listar IDs de reservas utilizando o filtro checkout and checkout: Falhou, código 500
-Listar IDs de reservas utilizando o filtro name, checkin and checkout date: OK, código 200, mas nunca retorna resultados
+Listar IDs de reservas utilizando o filtro name, checkin and checkout date: Código 200, mas nunca retorna resultados
 
 /POST
 
