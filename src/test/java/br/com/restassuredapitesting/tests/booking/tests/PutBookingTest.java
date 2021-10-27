@@ -28,12 +28,7 @@ public class PutBookingTest extends BaseTest {
     @DisplayName("Alterar uma reserva usando o token")
     @Severity(SeverityLevel.NORMAL)
     public void validarAlteracaoDeUmaReservaUsandoToken(){
-        int primeiroID = getBookingRequest.bookingReturnIDs()
-                .then()
-                .statusCode(200)
-                .extract()
-                .path("[0].bookingid");
-
+        int primeiroID = getBookingRequest.bookingReturnValidID();
 
         putBookingRequest.updateBookingToken(primeiroID,postAuthRequest.getToken())
                 .then()
@@ -46,12 +41,7 @@ public class PutBookingTest extends BaseTest {
     @DisplayName("Alterar uma reserva usando o Basic auth")
     @Severity(SeverityLevel.NORMAL)
     public void validarAlteracaoDeUmaReservaUsandoBasicAuth(){
-        int primeiroID = getBookingRequest.bookingReturnIDs()
-                .then()
-                .statusCode(200)
-                .extract()
-                .path("[0].bookingid");
-
+        int primeiroID = getBookingRequest.bookingReturnValidID();
 
         putBookingRequest.updateBookingAuthorisation(primeiroID,"Basic YWRtaW46cGFzc3dvcmQxMjM=")
                 .then()
@@ -64,12 +54,7 @@ public class PutBookingTest extends BaseTest {
     @DisplayName("Tentar alterar uma reserva quando o token não for enviado")
     @Severity(SeverityLevel.NORMAL)
     public void validarAlteracaoDeUmaReservaSemToken(){
-        int primeiroID = getBookingRequest.bookingReturnIDs()
-                .then()
-                .statusCode(200)
-                .extract()
-                .path("[0].bookingid");
-
+        int primeiroID = getBookingRequest.bookingReturnValidID();
 
         putBookingRequest.updateBookingToken(primeiroID,"")
                 .then()
@@ -81,12 +66,7 @@ public class PutBookingTest extends BaseTest {
     @DisplayName("Tentar alterar uma reserva quando o token enviado for inválido")
     @Severity(SeverityLevel.NORMAL)
     public void validarAlteracaoDeUmaReservaUsandoTokenErrado(){
-        int primeiroID = getBookingRequest.bookingReturnIDs()
-                .then()
-                .statusCode(200)
-                .extract()
-                .path("[0].bookingid");
-
+        int primeiroID = getBookingRequest.bookingReturnValidID();
 
         putBookingRequest.updateBookingToken(primeiroID,"abc123")
                 .then()
@@ -98,7 +78,7 @@ public class PutBookingTest extends BaseTest {
     @DisplayName("Tentar alterar uma reserva que não existe")
     @Severity(SeverityLevel.NORMAL)
     public void validarAlteracaoDeUmaReservaInexistenteUsandoToken(){
-        int idInvalido = 1;
+        int idInvalido = getBookingRequest.bookingReturnInvalidID();
 
         putBookingRequest.updateBookingToken(idInvalido,postAuthRequest.getToken())
                 .then()

@@ -7,11 +7,38 @@ import static io.restassured.RestAssured.given;
 
 public class GetBookingRequest {
 
+    PostBookingRequest postBookingRequest = new PostBookingRequest();
+    DeleteBookingRequest deleteBookingRequest = new DeleteBookingRequest();
+
     @Step("Retorna os IDs da listagem de reservas")
     public Response bookingReturnIDs(){
         return given()
                 .when()
                 .get("booking");
+    }
+
+    @Step("Retorna o primeiro ID válido da listagem de reservas")
+    public int bookingReturnValidID(){
+        if (bookingReturnIDs()
+                .then()
+                .extract()
+                .path("[0].bookingid")==null) postBookingRequest
+                .createBookingRequest();
+
+        return bookingReturnIDs()
+                .then()
+                .statusCode(200)
+                .extract()
+                .path("[0].bookingid");
+    }
+
+    @Step("Retorna o primeiro ID que não consta na listagem de reservas")
+    public int bookingReturnInvalidID(){
+        int i;
+        for (i=1; i< 1000; i++){
+            if(bookingReturn(i).then().extract().statusCode()==404) break;
+        }
+        return i;
     }
 
     @Step("Retorna os IDs da listagem de reservas, afetados por um filtro")

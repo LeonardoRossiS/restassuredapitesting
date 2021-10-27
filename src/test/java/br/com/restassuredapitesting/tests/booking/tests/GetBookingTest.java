@@ -29,11 +29,7 @@ public class GetBookingTest extends BaseTest {
     @Category({AllTests.class, Acceptance.class})
     @DisplayName("Listar uma reserva específica")
     public void validaListagemReservaEspecifica(){
-        int primeiroID = getBookingRequest.bookingReturnIDs()
-                .then()
-                .statusCode(200)
-                .extract()
-                .path("[0].bookingid");
+        int primeiroID = getBookingRequest.bookingReturnValidID();
 
         getBookingRequest.bookingReturn(primeiroID)
                 .then()
@@ -142,11 +138,7 @@ public class GetBookingTest extends BaseTest {
     @Category({AllTests.class, Schema.class})
     @DisplayName("Garantir o schema do retorno de uma reserva específica")
     public void validaSchemaReservaEspecifica(){
-        int primeiroID = getBookingRequest.bookingReturnIDs()
-                .then()
-                .statusCode(200)
-                .extract()
-                .path("[0].bookingid");
+        int primeiroID = getBookingRequest.bookingReturnValidID();
 
         getBookingRequest.bookingReturn(primeiroID)
                 .then()
