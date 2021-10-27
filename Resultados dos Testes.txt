@@ -14,11 +14,9 @@ Garantir o schema do retorno de uma reserva específica: Algumas das reservas es
 Suite Acceptance:
 
 /DELETE
-
 Excluir um reserva com sucesso: OK
 
 /GET
-
 Listar IDs das reservas: OK
 Listar uma reserva específica: OK
 Listar IDs de reservas utilizando o filtro firstname: OK
@@ -29,35 +27,29 @@ Listar IDs de reservas utilizando o filtro checkout and checkout: Falhou, códig
 Listar IDs de reservas utilizando o filtro name, checkin and checkout date: Código 200, mas nunca retorna resultados
 
 /POST
-
 Criar uma nova reserva: OK
 
 /PUT
-
 Alterar uma reserva usando o token: OK
-Alterar uma reserva usando o Basic auth: Falhou, código 403
+Alterar uma reserva usando o Basic auth: Falhou, código 403, o parâmetro 'Authorisation' não dá permissão para alterar reserva
 
 
 Suite E2e :
 
 /DELETE
-
 Tentar excluir um reserva que não existe: Falhou, código 405
 Tentar excluir uma reserva sem autorização: Falhou, código 403
 
 /GET
-
 Visualizar erro de servidor 500 quando enviar filtro mal formatado: Falhou, código 200, retornou todos os IDs
 
 /POST
-
-Validar retorno 500 quando o payload da reserva estiver inválido: OK
+Validar retorno 500 quando o payload da reserva estiver inválido: OK, exceto quando o parâmetro inválido for 'additionalneeds', neste caso, a reserva é enviada sem o parâmetro 'additionalneeds'
 Validar a criação de mais de um livro em sequencia: OK
 Criar uma reserva enviando mais parâmetros no payload da reserva: A reserva é criada, os parâmetros extra são ignorados
 Validar retorno 418 quando o header Accept for invalido: Ok
 
 /PUT
-
 Tentar alterar uma reserva quando o token não for enviado: Falhou, código 403
 Tentar alterar uma reserva quando o token enviado for inválido: Falhou, código 403
 Tentar alterar uma reserva que não existe: Falhou, código 405
