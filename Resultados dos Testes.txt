@@ -8,7 +8,7 @@ Suite Schema :
 
 /GET
 Garantir o schema do retorno da lista de reservas: OK
-Garantir o schema do retorno de uma reserva específica: OK
+Garantir o schema do retorno de uma reserva específica: Algumas das reservas estão sem o parâmetro 'additionalneeds', há um erro na criação
 
 
 Suite Acceptance:

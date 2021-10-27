@@ -70,7 +70,7 @@ public class GetBookingRequest {
                         +"&"+filter4+"="+attribute4);
     }
 
-    @Step("Retorna os detlhes da reserva 'id'")
+    @Step("Retorna os parâmetros da reserva 'id'")
     public Response bookingReturn(int id){
         return given()
                 .when()

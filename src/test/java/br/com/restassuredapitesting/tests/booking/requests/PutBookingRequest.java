@@ -21,7 +21,7 @@ public class PutBookingRequest {
                 .put("booking/"+id);
     }
 
-    @Step("Atualiza uma reserva específica com o parâmetro token")
+    @Step("Atualiza uma reserva específica com o parâmetro authorisation")
     public Response updateBookingAuthorisation(int id, String authorisation){
         return given()
                 .header("Content-Type","application/json")

@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Categories.class)
-@Categories.IncludeCategory(br.com.restassuredapitesting.suites.AllTests.class)
+@Categories.IncludeCategory(br.com.restassuredapitesting.suites.Acceptance.class)
 @Suite.SuiteClasses({
         GetBookingTest.class,
         PutBookingTest.class,
